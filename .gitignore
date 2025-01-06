@@ -1,32 +1,30 @@
-# Prerequisites
-*.d
+#include <iostream>
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+using namespace std;
 
-# Precompiled Headers
-*.gch
-*.pch
+int binarySearch(int arr[], int l, int r, int x) {
+  while (l <= r) {
+    int mid = l + (r - l) / 2;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+    if (arr[mid] == x)
+      return mid;
 
-# Fortran module files
-*.mod
-*.smod
+    if (arr[mid] < x)
+      l = mid + 1;
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+    else
+      r = mid - 1;
+  }
 
-# Executables
-*.exe
-*.out
-*.app
+  return -1;
+}
+
+int main(void) {
+  int arr[] = {2, 3, 4, 10, 40};
+  int n = sizeof(arr) / sizeof(arr[0]);
+  int x = 10;
+  int result = binarySearch(arr, 0, n - 1, x);
+  (result == -1) ? cout << "Element is not present in array"
+                 : cout << "Element is present at index " << result;
+  return 0;
+}
